@@ -309,7 +309,7 @@ if stamina_mod_loaded then
                 if player:is_player() then
                     dummy_id = player:hud_add({
                         type = "text",
-                        position = {x = 0, y = 0},
+                        position = {x = -10, y = -10},  -- Colocar fuera de la pantalla
                         text = "",
                         number = 0,
                         alignment = {x = 0, y = 0},
@@ -359,9 +359,15 @@ if stamina_mod_loaded then
             if dummy_id and dummy_id > 0 then
                 pcall(function()
                     if poisoned then
-                        player:hud_change(dummy_id, "text", "stamina_hud_poison.png")
+                        -- No cambiar el texto, solo el número para no mostrar el nombre del archivo
+                        player:hud_change(dummy_id, "number", 0)
+                        -- Asegurarse de que esté fuera de pantalla
+                        player:hud_change(dummy_id, "position", {x = -10, y = -10})
                     else
-                        player:hud_change(dummy_id, "text", "stamina_hud_fg.png")
+                        -- No cambiar el texto, solo el número para no mostrar el nombre del archivo
+                        player:hud_change(dummy_id, "number", 0)
+                        -- Asegurarse de que esté fuera de pantalla
+                        player:hud_change(dummy_id, "position", {x = -10, y = -10})
                     end
                 end)
             end
@@ -376,12 +382,12 @@ if stamina_mod_loaded then
         -- Create a dummy HUD element for stamina to use
         local dummy_hud = player:hud_add({
             type = "text",
-            position = {x = 0, y = 0},
-            text = "",
+            position = {x = -10, y = -10},  -- Colocar fuera de la pantalla para asegurarse que no sea visible
+            text = "",                      -- Mantener texto vacío
             number = 0,
             alignment = {x = 0, y = 0},
             offset = {x = 0, y = 0},
-            scale = {x = 0, y = 0},  -- Make it invisible
+            scale = {x = 0, y = 0},         -- Escala cero para hacerlo invisible
         })
         
         -- Store this dummy HUD ID 
