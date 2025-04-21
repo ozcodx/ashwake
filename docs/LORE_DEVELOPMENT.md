@@ -56,6 +56,12 @@ This document tracks the development of Ashwake's lore, characters, and story el
 - Became focal points of Velrot influence, birthing the elemental bosses
 - Scattered across different biomes and depths
 
+### Amnesis Production Facility
+- Where the Amnesis Units were designed and manufactured
+- Contains template schematics and upgrade components
+- Partially functional systems may allow for player upgrades and modifications
+- Houses records of which consciousness was assigned to which unit
+
 ### Velmire
 - Parallel dimension that is the source of Velrot
 - Alien landscape with unique physics and materials
@@ -89,6 +95,14 @@ This document tracks the development of Ashwake's lore, characters, and story el
 - Each bonded with their respective element for enhanced capabilities
 - Affected by Velrot during the catastrophe
 - Now manifest as the six elemental bosses
+
+### Corrupted Amnesis Units
+- Failed or damaged Amnesis Units affected by Velrot
+- Possess partial consciousness and corrupted programming
+- Highly intelligent and capable of using tools and technology
+- Hostile to the player due to competing survival imperatives
+- Some may retain fragments of their original human consciousness
+- Potential for rare non-hostile encounters with units that maintained sanity
 
 ---
 
@@ -127,6 +141,31 @@ This document tracks the development of Ashwake's lore, characters, and story el
 6. "Velmire is not just another dimension—it may be the mirror of our own."
 7. "The key is not to destroy the Velrot but to restore balance between dimensions."
 
+### Amnesis Unit Technical Manuals (9 fragments)
+1. "Amnesis Units combine biomechanical components with consciousness transfer matrices."
+2. "Each unit contains a specialized energy core calibrated to the host consciousness."
+3. "Units are designed with modular components for upgrades and specialization."
+4. "Warning: Consciousness transfer must complete fully to avoid cognitive fragmentation."
+5. "In emergency situations, units can operate on minimal functionality for up to 300 years."
+6. "Certain anomalous units have shown signs of evolving beyond their programming."
+7. "If encountering another Amnesis Unit, approach with caution. Identity verification required."
+8. "Reports of malfunctioning units displaying hostile behavior. Maintenance protocols attached."
+9. "Final safety protocol: Units with incomplete consciousness transfers must be recalibrated."
+
+### Technological Evolution Records (5 fragments)
+1. "From stone tools to energy manipulation, Thalosian technology evolved over just 200 years."
+2. "The Steam Revolution accelerated our progress exponentially through industrial scaling."
+3. "Electrical Enlightenment gave us the foundation for energy manipulation and transfer."
+4. "The discovery of consciousness-as-energy was the cornerstone of our final achievements."
+5. "Technological progression alone is meaningless without ethical guidance. We failed to heed this."
+
+### Survivalist Diary (5 fragments)
+1. "Day 47: The city's gone dark. Those who didn't flee are either dead or... changed. I've fortified the old bunker with whatever I could salvage."
+2. "Month 3: The Velrot spreads faster than anyone predicted. Even the military checkpoints are abandoned now. Found strange machinery in the research district."
+3. "Year 1: Met other survivors. They speak of walking machines that look human. One of them helped their group escape a corrupted zone. Not all are hostile."
+4. "Year 5: Most radio signals have gone silent. The corruption has changed the landscape completely. Strange lights in the ruins at night. The machines are collecting something."
+5. "Year 10: My shelter's compromised. The corruption seeps through even the sealed walls. If anyone finds this, don't trust the Engine. It wasn't meant to save us. It was meant to—" [Entry ends abruptly]
+
 ---
 
 ## Elemental Lore
@@ -163,6 +202,43 @@ This document tracks the development of Ashwake's lore, characters, and story el
 
 ---
 
+## Amnesis Unit Design
+
+### Core Components
+- **Consciousness Matrix**: Stores the transferred human consciousness
+- **Energy Core**: Powers the unit for centuries without recharging
+- **Biomechanical Frame**: Combines organic and mechanical elements
+- **Sensory Array**: Provides enhanced perception beyond human capability
+- **Memory Storage System**: Houses both transferred and new memories
+
+### Modular Systems
+- Units were designed with interchangeable components
+- Different specializations required different module configurations
+- Player can discover and install various modules throughout gameplay
+- Some modules may have unexpected interactions with Velrot influence
+
+### Biological Elements
+- Despite mechanical appearance, units contain significant organic material
+- Requires energy input (food) to maintain biological components
+- Can experience system malfunctions similar to biological illness
+- Self-repair capabilities when provided proper materials
+
+### Known Issues
+- Incomplete consciousness transfers result in memory gaps
+- Extended hibernation can cause system degradation
+- Proximity to Velrot can interfere with matrix stability
+- Direct contact with elemental energies can alter core functionality
+
+### Corrupted Units
+- Result of Velrot influence on the consciousness matrix
+- Manifests as erratic behavior and hostility
+- May retain some aspects of original consciousness
+- Use scavenged technology and tools
+- Some may have formed primitive societies in remote areas
+- Theoretically can be restored with proper equipment and procedures
+
+---
+
 ## Velrot Influence
 
 ### Nature
@@ -184,6 +260,46 @@ This document tracks the development of Ashwake's lore, characters, and story el
 - Advanced exposure results in physical and mental transformation
 - Complete exposure merges consciousness with the Velrot field
 
+### Effects on Amnesis Units
+- Interference with consciousness matrix stability
+- Gradual corruption of directives and memory access
+- Potential for complete personality override
+- May enhance certain capabilities while degrading others
+- Resistance varies based on unit type and configuration
+
+---
+
+## Health and Survival Mechanics
+
+### Energy System
+- Amnesis Units require energy to function
+- Various food sources provide different energy values
+- Some foods also provide temporary buffs or special effects
+- Energy is depleted by activities, repair, and basic operation
+
+### Illness and Malfunctions
+- Various conditions can affect Amnesis Units:
+  - System corruption (from Velrot exposure)
+  - Circuit degradation (from water exposure)
+  - Matrix instability (from energy depletion)
+  - Sensory malfunction (from damage or environmental factors)
+- Each condition affects gameplay in different ways
+- Treatments vary from simple repairs to complex procedures
+
+### Hidden Factors
+- Sleep deprivation: Units require periodic shutdown for system maintenance
+- Sunlight exposure: Light energy helps maintain certain systems
+- Diet variety: Different resources needed for comprehensive repair
+- Environmental hazards: Extreme conditions affect system stability
+- These factors influence illness susceptibility and recovery rates
+
+### Treatment Methods
+- Basic repairs: Using simple tools and materials
+- Advanced repairs: Requiring specialized equipment
+- Chemical treatments: Using crafted remedies for specific conditions
+- Energy recalibration: At specialized Thalosian stations
+- Treatment complexity increases with technological progression
+
 ---
 
 ## Player Journey
@@ -193,10 +309,11 @@ This document tracks the development of Ashwake's lore, characters, and story el
 - Must learn basic survival in an abnormal world
 - Discovers they are an Amnesis Unit through environmental clues
 
-### Discovery
-- Finds first memory fragments revealing their connection to Dr. Thorus
-- Learns about Thalos, Velrot, and the catastrophe
-- Begins to encounter elemental entities and detect Velrot influence
+### Technological Progression
+- Starts with primitive tools and basic survival
+- Gradually discovers and unlocks more advanced technologies
+- Each tier opens new crafting options and exploration possibilities
+- Thalosian technology ultimately allows for deeper understanding of Velrot
 
 ### Revelation
 - Discovers the truth about the Crucis Engine
@@ -226,6 +343,11 @@ This document tracks the development of Ashwake's lore, characters, and story el
 - Still-functioning Thalosian technology
 - Purpose not immediately obvious
 - Can be repaired or repurposed by the player
+
+### Technological Progression Sites
+- Sites showing the evolution of Thalosian technology
+- From simple mechanical systems to advanced energy manipulation
+- Provide insights and blueprints for player's own progression
 
 ### Natural Adaptation
 - Plants and landscape showing signs of adaptation to invisible forces

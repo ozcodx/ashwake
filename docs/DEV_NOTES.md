@@ -12,7 +12,6 @@ This document contains development notes, spoilers, and planning information for
 - **Nature**: Incorporeal disease that distorts consciousness, perception, and reality
 - **Manifestation**: Invisible force, detected only through its effects on the environment and entities
 - **Mechanics to implement**:
-  - Effects on environment (distorted behavior of nodes/blocks)
   - Effects on entities and mobs
   - Player debuffs when in corrupted areas
   - Corruption resistance/immunity items
@@ -22,13 +21,25 @@ This document contains development notes, spoilers, and planning information for
 - **Player Identity**: The player is an awakened Amnesis Unit with no memory
 - **Mechanics to implement**:
   - Visual player model representing biomechanical nature
-  - Energy/power system instead of traditional food
-  - Memory fragment collection mechanic
-  - Special abilities unlocked through memory restoration
+  - Energy system instead of traditional food
+  - Upgradeable parts that boost mechanics
 
 ---
 
 ## Gameplay Systems
+
+### Technology Progression
+- **Evolution Path**:
+  - Stone Age (primitive tools, basic structures)
+  - Simple Mechanisms (hand-powered, basic gears)
+  - Steam Power (pressure-based systems, heat management)
+  - Electricity (circuits, generators, batteries)
+  - Thalosian Technology (energy cores, matter-energy conversion)
+- **Progression System**:
+  - Technologies unlock through exploration and discovery
+  - Research component (finding ancient documents)
+  - Experimentation system (combining elements to discover recipes)
+  - Crafting station requirements (more advanced tech requires specialized stations)
 
 ### Light & Darkness Cycle
 - **Core Mechanic**: Light is safety, darkness brings danger
@@ -36,7 +47,41 @@ This document contains development notes, spoilers, and planning information for
   - Increased mob spawning in darkness
   - Player debuffs in darkness
   - Light sources with different strengths/durations
-  - Light manipulation technology (late game)
+
+### Crafting System
+- **Components**:
+  - Materials (raw resources and refined components)
+  - Tools (degrade with use, different tiers for different tech levels)
+  - Fuels (required for certain crafting stations)
+  - Recipes (some known from beginning, others discovered)
+- **Crafting Stations**:
+  - Stone Age: Crafting Table, Stone Kiln
+  - Simple Mechanisms: Woodworking Bench, Forge
+  - Steam Age: Steam Press, Pressure Refiner
+  - Electrical: Circuit Table, Electro-Assembler
+  - Thalosian: Synth Chamber, Matter Reconstructor
+- **Discovery System**:
+  - Recipe experimentation (shapeless crafting allows trying combinations)
+  - Ancient documents (find Thalosian texts containing advanced recipes)
+  - Observation (certain world events can hint at possible recipes)
+
+### Health & Survival System
+- **Energy System**:
+  - Food provides different energy levels (replaces traditional health)
+  - Even with mechanical body, organic components require sustenance
+  - Different food types provide different benefits/duration
+- **Illness System**:
+  - Various conditions can affect the player (malfunctions, corruptions, etc.)
+  - Monster attacks can cause status effects (frozen, stunned, etc.)
+  - Hidden factors influence illness development:
+    - Sleep deprivation (too long without resting)
+    - Sunlight deprivation (too long underground)
+    - Diet monotony (eating the same food repeatedly)
+    - Environmental hazards (certain areas cause specific conditions)
+- **Treatment System**:
+  - Each illness/condition has specific cures/treatments
+  - Treatments scale with technology level
+  - Some conditions require specific ingredients from dangerous areas
 
 ### Elemental Mobs
 - **Types to Create**:
@@ -46,6 +91,8 @@ This document contains development notes, spoilers, and planning information for
   4. Aero (Air) - fast, difficult to hit
   5. Lux (Light) - rare, only in specific locations, special drops
   6. Umbra (Shadow) - only at night, invisibility abilities
+- **Special Mobs**:
+  - Corrupted Amnesis Unit - hostile version of the player, high intelligence, uses tools
 - **Behavior System**:
   - Element-specific behaviors and attacks
   - Resistance to certain weapons/elements
@@ -117,23 +164,6 @@ This document contains development notes, spoilers, and planning information for
 
 ---
 
-## Mod Implementation Notes
-
-### Required New Mods
-- `ashwake_core`: Base functionality and API
-- `ashwake_velrot`: Corruption mechanics
-- `ashwake_mobs`: Elemental creatures
-- `ashwake_alchemy`: Crafting system
-- `ashwake_artifacts`: Ancient technology
-- `ashwake_dimensions`: Velmire and other realms
-
-### Modified Minetest Game Mods
-- `default`: Add corruption effects to base nodes
-- `player_api`: Modify for Amnesis Unit visuals and mechanics
-- `weather`: Enhance for atmospheric effects in corrupted areas
-
----
-
 ## Asset Tracking
 
 ### Textures Needed
@@ -142,24 +172,22 @@ This document contains development notes, spoilers, and planning information for
 - Ancient technology artifacts
 - Elemental mob textures
 - Amnesis Unit player textures
+- Technology progression items and stations
+- Illness/condition status icons
 
 ### Sounds Needed
 - Ambient sounds for corrupted areas
 - Elemental mob sounds
 - Ancient technology activation sounds
 - Subtle environmental cues for Velrot presence
+- Crafting station operation sounds
+- Illness/condition effect sounds
 
 ---
 
 ## Testing Notes
 
 *Add testing feedback, bugs, and balance issues here as development progresses*
-
----
-
-## Lore Fragments
-
-*Document memory fragments, journal entries, and other lore pieces here for implementation in-game*
 
 ---
 
