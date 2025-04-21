@@ -6,6 +6,9 @@ local orig_hud_flags = {}
 -- Create our static bubble background HUD for players
 local bubble_bg_huds = {}
 
+-- Create our static heart background HUD for players
+local heart_bg_huds = {}
+
 -- Thirsty mod integration
 local thirsty_mod_loaded = minetest.get_modpath("thirsty") ~= nil
 local thirsty_huds = {}
@@ -41,6 +44,31 @@ local function create_bubble_bg_hud(player)
     })
     
     minetest.log("action", "[hud_align] Created static bubble background for " .. name)
+end
+
+-- Create static heart background HUD for the player
+local function create_heart_bg_hud(player)
+    local name = player:get_player_name()
+    if not name then return end
+    
+    -- Check if the HUD already exists to prevent duplicates
+    if heart_bg_huds[name] then
+        minetest.log("action", "[hud_align] Heart background HUD already exists for " .. name)
+        return
+    end
+    
+    -- Create static background of 10 empty hearts - totally static image
+    heart_bg_huds[name] = player:hud_add({
+        name = "heart_background",
+        hud_elem_type = "image",
+        position = {x = 0.5, y = 1},
+        text = "heart_strip_bg.png", -- Background texture strip (10 empty hearts)
+        alignment = {x = 0, y = -1},
+        offset = {x = -145, y = -64},  -- Position where default heart HUD appears
+        scale = {x = 2, y = 2},      -- Scale to match default heart size
+    })
+    
+    minetest.log("action", "[hud_align] Created static heart background for " .. name)
 end
 
 -- Create custom thirsty HUD for the player
@@ -391,6 +419,7 @@ minetest.register_on_joinplayer(function(player)
     -- Enable the default breath HUD
     local flags = player:hud_get_flags()
     flags.breath = true
+    flags.health = true  -- Keep the default health HUD visible
     player:hud_set_flags(flags)
     
     -- Track initialization to prevent duplicate HUDs
@@ -409,10 +438,14 @@ minetest.register_on_joinplayer(function(player)
             -- Make sure breath HUD is enabled
             local flags = player_obj:hud_get_flags()
             flags.breath = true
+            flags.health = true  -- Keep the default health HUD visible
             player_obj:hud_set_flags(flags)
             
             -- Create our bubble background HUD
             create_bubble_bg_hud(player_obj)
+            
+            -- Create our heart background HUD
+            create_heart_bg_hud(player_obj)
             
             -- Create thirsty HUD if mod is loaded and not using hudbars
             if thirsty_mod_loaded and not core.global_exists("hb") then
@@ -438,6 +471,7 @@ minetest.register_on_leaveplayer(function(player)
     if not name then return end
     
     bubble_bg_huds[name] = nil
+    heart_bg_huds[name] = nil
     thirsty_huds[name] = nil
     thirsty_values[name] = nil
     original_thirsty_huds[name] = nil
@@ -464,7 +498,12 @@ minetest.register_globalstep(function(dtime)
             if not flags.breath then
                 flags.breath = true
                 player:hud_set_flags(flags)
-                minetest.log("action", "[hud_align] Re-enabled default breath HUD for " .. name)
+            end
+            
+            -- Make sure health HUD is enabled
+            if not flags.health then
+                flags.health = true
+                player:hud_set_flags(flags)
             end
             
             -- Prevent duplicate HUD creation
@@ -501,6 +540,7 @@ minetest.after(2.0, function()
         if name then
             local flags = player:hud_get_flags()
             flags.breath = true
+            flags.health = true  -- Keep health HUD visible
             player:hud_set_flags(flags)
         end
     end
