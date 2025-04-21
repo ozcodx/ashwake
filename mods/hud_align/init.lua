@@ -12,6 +12,12 @@ local thirsty_huds = {}
 local thirsty_values = {}
 local original_thirsty_huds = {}
 
+-- Stamina mod integration
+local stamina_mod_loaded = minetest.get_modpath("stamina") ~= nil
+local stamina_huds = {}
+local stamina_values = {}
+local original_stamina_huds = {}
+
 -- Create static bubble background HUD for the player
 local function create_bubble_bg_hud(player)
     local name = player:get_player_name()
@@ -80,6 +86,46 @@ local function create_thirsty_hud(player)
     minetest.log("action", "[hud_align] Created thirsty HUD for " .. name .. " with value " .. value .. "/20")
 end
 
+-- Create custom stamina HUD for the player
+local function create_stamina_hud(player)
+    if not stamina_mod_loaded then return end
+    
+    local name = player:get_player_name()
+    if not name then return end
+    
+    -- Check if the HUD already exists to prevent duplicates
+    if stamina_huds[name] then
+        minetest.log("action", "[hud_align] Stamina HUD already exists for " .. name)
+        return
+    end
+    
+    local value = 0
+    
+    -- Get the stamina value from player meta
+    value = stamina.get_saturation(player) or 20
+    
+    -- Create our custom stamina HUD - use the original position but with our custom background
+    stamina_huds[name] = player:hud_add({
+        name = "custom_stamina",
+        hud_elem_type = "statbar",
+        position = {x = 0.5, y = 1},
+        text = "stamina_hud_fg.png",
+        number = value,
+        text2 = "stamina_custom_bg.png", -- Our custom background
+        item = 20, -- Visual max from stamina mod is 20 by default
+        alignment = {x = -1, y = -1},
+        offset = {x = -266, y = -110}, -- Original stamina position
+        size = {x = 24, y = 24},
+        max = 0,
+        direction = 0,
+    })
+    
+    -- Store the current value
+    stamina_values[name] = value
+    
+    minetest.log("action", "[hud_align] Created stamina HUD for " .. name .. " with value " .. value .. "/20")
+end
+
 -- Update custom thirsty HUD
 local function update_thirsty_hud(player)
     if not thirsty_mod_loaded then return end
@@ -105,6 +151,35 @@ local function update_thirsty_hud(player)
     if value ~= thirsty_values[name] and thirsty_huds[name] then
         player:hud_change(thirsty_huds[name], "number", value)
         thirsty_values[name] = value
+    end
+end
+
+-- Update custom stamina HUD
+local function update_stamina_hud(player)
+    if not stamina_mod_loaded then return end
+    
+    local name = player:get_player_name()
+    if not name then return end
+    
+    -- If the HUD doesn't exist yet for this player, create it
+    if not stamina_huds[name] then
+        create_stamina_hud(player)
+        return
+    end
+    
+    local value = stamina.get_saturation(player) or 20
+    
+    -- If value has changed, update the HUD
+    if value ~= stamina_values[name] and stamina_huds[name] then
+        player:hud_change(stamina_huds[name], "number", value)
+        stamina_values[name] = value
+    end
+    
+    -- Check if player is poisoned and update the texture if needed
+    if stamina.is_poisoned and stamina.is_poisoned(player) then
+        player:hud_change(stamina_huds[name], "text", "stamina_hud_poison.png")
+    else
+        player:hud_change(stamina_huds[name], "text", "stamina_hud_fg.png")
     end
 end
 
@@ -151,6 +226,157 @@ if thirsty_mod_loaded then
     end
 end
 
+-- Hook into stamina mod's HUD functions
+if stamina_mod_loaded then
+    -- Create a local table to track our HUD IDs for stamina
+    local stamina_hud_ids_by_player_name = {}
+    
+    -- Define our own get/set HUD ID functions
+    local function get_hud_id(player)
+        return stamina_hud_ids_by_player_name[player:get_player_name()]
+    end
+    
+    local function set_hud_id(player, hud_id)
+        stamina_hud_ids_by_player_name[player:get_player_name()] = hud_id
+    end
+    
+    -- Save the original register_on_joinplayer callback
+    local original_joinplayer = nil
+    -- Find the stamina joinplayer callback in the registered callbacks
+    for i, callback in ipairs(minetest.registered_on_joinplayers) do
+        if type(callback) == "function" then
+            local info = debug.getinfo(callback)
+            if info and info.source and info.source:match("stamina/init.lua") then
+                original_joinplayer = callback
+                table.remove(minetest.registered_on_joinplayers, i)
+                break
+            end
+        end
+    end
+    
+    -- Backup original stamina functions
+    local original_set_saturation = stamina.set_saturation
+    local original_set_poisoned = stamina.set_poisoned
+    
+    -- Replace stamina.set_saturation
+    stamina.set_saturation = function(player, level)
+        local name = player:get_player_name()
+        if not name then 
+            return original_set_saturation(player, level)
+        end
+        
+        -- Store the value in player metadata
+        player:get_meta():set_string("stamina:level", tostring(level))
+        
+        -- Update our custom HUD if it exists
+        if stamina_huds[name] then
+            player:hud_change(stamina_huds[name], "number", math.min(20, level))
+            stamina_values[name] = level
+        else
+            -- If our custom HUD doesn't exist, call the original function
+            -- But first make sure there's a valid HUD ID for the original function to use
+            local dummy_id = original_stamina_huds[name]
+            if not dummy_id or dummy_id <= 0 then
+                -- Need to create a dummy HUD first
+                if player:is_player() then
+                    dummy_id = player:hud_add({
+                        hud_elem_type = "text",
+                        position = {x = 0, y = 0},
+                        text = "",
+                        number = 0,
+                        alignment = {x = 0, y = 0},
+                        offset = {x = 0, y = 0},
+                        scale = {x = 0, y = 0},
+                    })
+                    original_stamina_huds[name] = dummy_id
+                    set_hud_id(player, dummy_id)
+                end
+            end
+            
+            if dummy_id and dummy_id > 0 then
+                -- Update the dummy HUD directly
+                pcall(function()
+                    player:hud_change(dummy_id, "number", math.min(20, level))
+                end)
+            end
+        end
+    end
+    
+    -- Replace stamina.set_poisoned
+    stamina.set_poisoned = function(player, poisoned)
+        local name = player:get_player_name()
+        if not name then 
+            return original_set_poisoned(player, poisoned)
+        end
+        
+        -- Update our custom HUD if it exists
+        if stamina_huds[name] then
+            if poisoned then
+                player:hud_change(stamina_huds[name], "text", "stamina_hud_poison.png")
+                player:get_meta():set_string("stamina:poisoned", "yes")
+            else
+                player:hud_change(stamina_huds[name], "text", "stamina_hud_fg.png")
+                player:get_meta():set_string("stamina:poisoned", "")
+            end
+        else
+            -- Set the poisoned status in metadata
+            if poisoned then
+                player:get_meta():set_string("stamina:poisoned", "yes")
+            else
+                player:get_meta():set_string("stamina:poisoned", "")
+            end
+            
+            -- Update the dummy HUD if it exists
+            local dummy_id = original_stamina_huds[name]
+            if dummy_id and dummy_id > 0 then
+                pcall(function()
+                    if poisoned then
+                        player:hud_change(dummy_id, "text", "stamina_hud_poison.png")
+                    else
+                        player:hud_change(dummy_id, "text", "stamina_hud_fg.png")
+                    end
+                end)
+            end
+        end
+    end
+    
+    -- Override the stamina joinplayer function
+    minetest.register_on_joinplayer(function(player)
+        local name = player:get_player_name()
+        if not name then return end
+        
+        -- Create a dummy HUD element for stamina to use
+        local dummy_hud = player:hud_add({
+            hud_elem_type = "text",
+            position = {x = 0, y = 0},
+            text = "",
+            number = 0,
+            alignment = {x = 0, y = 0},
+            offset = {x = 0, y = 0},
+            scale = {x = 0, y = 0},  -- Make it invisible
+        })
+        
+        -- Store this dummy HUD ID 
+        set_hud_id(player, dummy_hud)
+        original_stamina_huds[name] = dummy_hud
+        
+        -- Call the original stamina joinplayer function if available
+        if original_joinplayer then
+            pcall(function()
+                original_joinplayer(player)
+            end)
+        else
+            -- Fallback if we couldn't find the original joinplayer function
+            local level = 20
+            if stamina.get_saturation then
+                level = stamina.get_saturation(player) or 20
+            end
+            player:get_meta():set_string("stamina:level", tostring(level))
+            player:get_meta():set_string("stamina:poisoned", "")
+        end
+    end)
+end
+
 -- Track whether we've already initialized HUDs for each player
 local initialized_players = {}
 
@@ -193,6 +419,11 @@ minetest.register_on_joinplayer(function(player)
                 create_thirsty_hud(player_obj)
             end
             
+            -- Create stamina HUD if mod is loaded
+            if stamina_mod_loaded then
+                create_stamina_hud(player_obj)
+            end
+            
             -- Mark this player as initialized
             initialized_players[name] = true
             
@@ -210,6 +441,9 @@ minetest.register_on_leaveplayer(function(player)
     thirsty_huds[name] = nil
     thirsty_values[name] = nil
     original_thirsty_huds[name] = nil
+    stamina_huds[name] = nil
+    stamina_values[name] = nil
+    original_stamina_huds[name] = nil
     orig_hud_flags[name] = nil
     initialized_players[name] = nil
     
@@ -219,7 +453,7 @@ end)
 -- Prevent the globalstep function from creating duplicate HUDs
 local creating_hud = {}
 
--- Only update the thirsty HUD
+-- Update the thirsty and stamina HUDs
 minetest.register_globalstep(function(dtime)
     for _, player in ipairs(minetest.get_connected_players()) do
         if player and player:is_player() then
@@ -239,6 +473,9 @@ minetest.register_globalstep(function(dtime)
                 if thirsty_mod_loaded and not core.global_exists("hb") then
                     update_thirsty_hud(player)
                 end
+                if stamina_mod_loaded then
+                    update_stamina_hud(player)
+                end
                 creating_hud[name] = false
             end
         end
@@ -251,6 +488,10 @@ minetest.log("action", "[hud_align] HUD alignment mod loaded successfully")
 -- Log which features are active
 if thirsty_mod_loaded then
     minetest.log("action", "[hud_align] Thirsty mod integration enabled")
+end
+
+if stamina_mod_loaded then
+    minetest.log("action", "[hud_align] Stamina mod integration enabled")
 end
 
 -- Final safety check to enable all default breath HUDs
@@ -341,6 +582,59 @@ local function create_bubble_bg_strip()
                     minetest.log("warning", "[hud_align] Couldn't find thirsty drop texture in thirsty mod")
                 end
             end
+        end
+    end
+    
+    -- Check for stamina textures (only if stamina mod is loaded)
+    if stamina_mod_loaded then
+        -- Check if we already have the stamina foreground texture
+        local fg_file = io.open(minetest.get_modpath("hud_align") .. "/textures/stamina_hud_fg.png", "r")
+        if not fg_file then
+            -- Try to copy from stamina mod
+            local stamina_path = minetest.get_modpath("stamina")
+            if stamina_path then
+                local fg_path = stamina_path .. "/textures/stamina_hud_fg.png"
+                local fg_src = io.open(fg_path, "rb")
+                
+                if fg_src then
+                    local our_fg = io.open(minetest.get_modpath("hud_align") .. "/textures/stamina_hud_fg.png", "wb")
+                    if our_fg then
+                        our_fg:write(fg_src:read("*all"))
+                        our_fg:close()
+                        minetest.log("action", "[hud_align] Copied stamina foreground texture")
+                    end
+                    fg_src:close()
+                else
+                    minetest.log("warning", "[hud_align] Couldn't find stamina_hud_fg.png in stamina mod")
+                end
+            end
+        else
+            fg_file:close()
+        end
+        
+        -- Check if we need to copy the poison texture
+        local poison_file = io.open(minetest.get_modpath("hud_align") .. "/textures/stamina_hud_poison.png", "r")
+        if not poison_file then
+            -- Try to copy from stamina mod
+            local stamina_path = minetest.get_modpath("stamina")
+            if stamina_path then
+                local poison_path = stamina_path .. "/textures/stamina_hud_poison.png"
+                local poison_src = io.open(poison_path, "rb")
+                
+                if poison_src then
+                    local our_poison = io.open(minetest.get_modpath("hud_align") .. "/textures/stamina_hud_poison.png", "wb")
+                    if our_poison then
+                        our_poison:write(poison_src:read("*all"))
+                        our_poison:close()
+                        minetest.log("action", "[hud_align] Copied stamina poison texture")
+                    end
+                    poison_src:close()
+                else
+                    minetest.log("warning", "[hud_align] Couldn't find stamina_hud_poison.png in stamina mod")
+                end
+            end
+        else
+            poison_file:close()
         end
     end
 end
