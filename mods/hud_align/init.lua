@@ -35,7 +35,7 @@ local function create_bubble_bg_hud(player)
     -- Create static background of 10 empty bubbles - totally static image
     bubble_bg_huds[name] = player:hud_add({
         name = "bubble_background",
-        hud_elem_type = "image",
+        type = "image",
         position = {x = 0.5, y = 1},
         text = "bubble_bg_strip.png", -- Background texture strip (10 empty bubbles)
         alignment = {x = 0, y = -1},
@@ -60,7 +60,7 @@ local function create_heart_bg_hud(player)
     -- Create static background of 10 empty hearts - totally static image
     heart_bg_huds[name] = player:hud_add({
         name = "heart_background",
-        hud_elem_type = "image",
+        type = "image",
         position = {x = 0.5, y = 1},
         text = "heart_strip_bg.png", -- Background texture strip (10 empty hearts)
         alignment = {x = 0, y = -1},
@@ -95,7 +95,7 @@ local function create_thirsty_hud(player)
     -- Create our custom thirsty HUD - keep original X position (25), only change Y to match stamina
     thirsty_huds[name] = player:hud_add({
         name = "custom_thirst",
-        hud_elem_type = "statbar",
+        type = "statbar",
         position = {x = 0.5, y = 1},
         text = "thirsty_drop.png",
         number = value,
@@ -135,7 +135,7 @@ local function create_stamina_hud(player)
     -- Create our custom stamina HUD - use the original position but with our custom background
     stamina_huds[name] = player:hud_add({
         name = "custom_stamina",
-        hud_elem_type = "statbar",
+        type = "statbar",
         position = {x = 0.5, y = 1},
         text = "stamina_hud_fg.png",
         number = value,
@@ -308,7 +308,7 @@ if stamina_mod_loaded then
                 -- Need to create a dummy HUD first
                 if player:is_player() then
                     dummy_id = player:hud_add({
-                        hud_elem_type = "text",
+                        type = "text",
                         position = {x = 0, y = 0},
                         text = "",
                         number = 0,
@@ -375,7 +375,7 @@ if stamina_mod_loaded then
         
         -- Create a dummy HUD element for stamina to use
         local dummy_hud = player:hud_add({
-            hud_elem_type = "text",
+            type = "text",
             position = {x = 0, y = 0},
             text = "",
             number = 0,
