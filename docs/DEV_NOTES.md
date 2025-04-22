@@ -138,29 +138,105 @@ This document contains development notes, spoilers, and planning information for
 
 ## Development Roadmap
 
-### Phase 1: Core Mechanics
-- Basic world generation
-- Day/night cycle with danger scaling
-- Player survival mechanics
-- Initial resource gathering and crafting
+### Phase 1: Core Mechanics & Modifications (Current Phase)
+1. **Player Spawn & Movement**
+   - ✅ Create `spawn_fix` to ensure proper spawn locations
+   - Modify `player_api` with custom model for Amnesis Unit appearance
+   - Adjust movement parameters for heavier mechanical feel
 
-### Phase 2: Velrot & Corruption
-- Corrupted biomes and areas (with subtle environmental clues)
-- Basic elemental mobs
-- Corruption detection tools
-- Protection/resistance items
+2. **Survival Mechanics**
+   - ✅ Implement `thirst_damage` for basic hydration needs
+   - ✅ Customize HUD with `hud_align` for better aesthetics
+   - Enhance stamina system by modifying `stamina` mod
+   - Create `energy_system` mod to replace traditional food
 
-### Phase 3: Progression Systems
-- Alchemical crafting
-- Ancient technology discovery
-- Memory fragment collection
-- Ability unlocks
+3. **World and Environment**
+   - Create `corrupted_biomes` mod to add Velrot-affected areas
+   - Modify `weather` to include corruption particles/effects
+   - Enhance night dangers by adjusting mob spawning
 
-### Phase 4: End Game
-- Crucis Engine assembly
-- Velmire dimension
-- Elemental bosses
-- Multiple endings based on player choices
+### Phase 2: Entity & Creature Development
+1. **Custom Mobs Framework**
+   - Create `elemental_core` as base for all elemental creatures
+   - Study `mobs_monster` and `mobs_npc` as reference, to be replaced later
+   - Develop AI patterns for different elemental types
+
+2. **Element-Specific Mobs**
+   - Create `terra_creatures` for earth-based entities
+   - Create `aqua_creatures` for water-based entities
+   - Create `ignis_creatures` for fire-based entities
+   - Create `aero_creatures` for air-based entities
+
+3. **Neutral & Special Entities**
+   - Create `forgotten_ones` for neutral NPCs with memory fragments
+   - Create `corrupted_units` for hostile player-like entities
+   - Add specialized boss entity framework
+
+### Phase 3: Technology & Progression
+1. **Crafting System Enhancement**
+   - Create `tech_crafting` mod to implement progressive tech levels
+   - Modify `default` crafting to include discovery mechanics
+   - Add specialized crafting stations for each tech level
+
+2. **Technology Tiers**
+   - Create `primitive_tech` for Stone Age mechanics
+   - Create `mechanical_tech` for Simple Mechanisms level
+   - Create `steam_tech` for Steam Power mechanics
+   - Create `electrical_tech` for Electricity level
+   - Create `thalosian_tech` for advanced ancient technology
+
+3. **Research & Discovery**
+   - Develop `memory_fragments` system for unlocking knowledge
+   - Create `ancient_documents` discoverable items
+   - Implement experiment-based recipe discovery
+
+### Phase 4: Corruption & Alchemy
+1. **Corruption Mechanics**
+   - Create `velrot_core` to handle corruption spread and effects
+   - Implement corruption resistance items
+   - Add corruption detection tools
+
+2. **Alchemical System**
+   - Develop `alchemy_basics` for elemental essences
+   - Create `advanced_alchemy` for compound crafting
+   - Implement `purification_methods` for treating corruption
+
+3. **Environmental Hazards**
+   - Add corruption-based environmental effects
+   - Create special structures that appear in corrupted areas
+   - Implement cleansing mechanics for corrupted areas
+
+### Phase 5: End Game Content
+1. **Boss Development**
+   - Create unique bosses for each elemental type
+   - Develop the Crucis Engine assembly quest
+   - Implement multiple ending paths based on player choices
+
+2. **Velmire Dimension**
+   - Create separate dimension accessed through the Crucis Engine
+   - Develop unique environment and challenges
+   - Add special resources only available in Velmire
+
+3. **Narrative Completion**
+   - Finalize memory fragment collection system
+   - Implement revelation of player's true identity
+   - Create closing cinematic for each ending path
+
+### Phase 6: Polishing & Balancing
+1. **Performance Optimization**
+   - Audit all custom mods for performance issues
+   - Optimize entity rendering and behavior
+   - Ensure compatibility across different systems
+
+2. **UI & Experience**
+   - Finalize all custom HUD elements
+   - Ensure consistent visual language across all interfaces
+   - Add tutorial elements for complex systems
+
+3. **Balancing**
+   - Test and adjust difficulty progression
+   - Balance resource availability and crafting requirements
+   - Fine-tune combat mechanics and mob difficulty
 
 ---
 
