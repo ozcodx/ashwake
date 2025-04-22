@@ -139,21 +139,21 @@ This document contains development notes, spoilers, and planning information for
 ## Development Roadmap
 
 ### Phase 1: Core Mechanics & Modifications (Current Phase)
-1. **Player Spawn & Movement**
+1. **Player Spawn & Base Mechanics**
    - ✅ Create `spawn_fix` to ensure proper spawn locations
-   - Modify `player_api` with custom model for Amnesis Unit appearance
-   - Adjust movement parameters for heavier mechanical feel
+   - Utilize `skinsdb` to create Amnesis Unit appearances.
+   - Create custom skins that match the game's aesthetic and lore
 
 2. **Survival Mechanics**
    - ✅ Implement `thirst_damage` for basic hydration needs
    - ✅ Customize HUD with `hud_align` for better aesthetics
-   - Enhance stamina system by modifying `stamina` mod
-   - Create `energy_system` mod to replace traditional food
+   - Create `vitality_system` mod to integrate thirsty and stamina while maintaining human-like needs
 
 3. **World and Environment**
    - Create `corrupted_biomes` mod to add Velrot-affected areas
    - Modify `weather` to include corruption particles/effects
-   - Enhance night dangers by adjusting mob spawning
+   - Enhance night dangers by adjusting mob spawning parameters
+   - Utilize existing dungeons as Thalosian ruins through `dungeon_loot` modifications
 
 ### Phase 2: Entity & Creature Development
 1. **Custom Mobs Framework**
@@ -162,33 +162,34 @@ This document contains development notes, spoilers, and planning information for
    - Develop AI patterns for different elemental types
 
 2. **Element-Specific Mobs**
-   - Create `terra_creatures` for earth-based entities
-   - Create `aqua_creatures` for water-based entities
-   - Create `ignis_creatures` for fire-based entities
-   - Create `aero_creatures` for air-based entities
+   - Create `terra_creatures` mod for earth-based entities (including Terra Prime boss)
+   - Create `aqua_creatures` mod for water-based entities (including Aqua Nexus boss)
+   - Create `ignis_creatures` mod for fire-based entities (including Ignis Core boss)
+   - Create `aero_creatures` mod for air-based entities (including Aero Tempest boss)
+   - Later stages: Create `lux_entities` and `umbra_entities` with respective bosses
 
-3. **Neutral & Special Entities**
-   - Create `forgotten_ones` for neutral NPCs with memory fragments
+3. **Hazards & Special Entities**
+   - Create `velrot_entities` for corruption-based creatures
    - Create `corrupted_units` for hostile player-like entities
    - Add specialized boss entity framework
 
 ### Phase 3: Technology & Progression
 1. **Crafting System Enhancement**
    - Create `tech_crafting` mod to implement progressive tech levels
-   - Modify `default` crafting to include discovery mechanics
+   - Convert existing crafting to shapeless discovery-based system
    - Add specialized crafting stations for each tech level
 
 2. **Technology Tiers**
-   - Create `primitive_tech` for Stone Age mechanics
-   - Create `mechanical_tech` for Simple Mechanisms level
-   - Create `steam_tech` for Steam Power mechanics
-   - Create `electrical_tech` for Electricity level
-   - Create `thalosian_tech` for advanced ancient technology
+   - Create `primitive_tech` for Stone Age mechanics, migrating appropriate existing recipes
+   - Create `mechanical_tech` for Simple Mechanisms level with new and migrated recipes
+   - Create `steam_tech` for Steam Power mechanics with new and migrated recipes
+   - Create `electrical_tech` for Electricity level with new and migrated recipes
+   - Create `thalosian_tech` for advanced ancient technology with new recipes
 
 3. **Research & Discovery**
-   - Develop `memory_fragments` system for unlocking knowledge
-   - Create `ancient_documents` discoverable items
-   - Implement experiment-based recipe discovery
+   - Develop `thalosian_crystals` system for storing and retrieving memories/knowledge
+   - Modify `dungeon_loot` to include blueprints, crystal fragments, and ancient parts
+   - Implement experiment-based recipe discovery within the shapeless crafting system
 
 ### Phase 4: Corruption & Alchemy
 1. **Corruption Mechanics**
@@ -206,9 +207,15 @@ This document contains development notes, spoilers, and planning information for
    - Create special structures that appear in corrupted areas
    - Implement cleansing mechanics for corrupted areas
 
+### Phase 4.5: Advanced Entities
+1. **NPC Implementation**
+   - Create `awakened_units` mod to replace `mobs_npc`
+   - Design NPCs as awakened Amnesis Units or ancient functional machines
+   - Implement interaction and trading mechanics specific to the game's lore
+
 ### Phase 5: End Game Content
 1. **Boss Development**
-   - Create unique bosses for each elemental type
+   - Finalize all elemental bosses within their respective mods
    - Develop the Crucis Engine assembly quest
    - Implement multiple ending paths based on player choices
 
@@ -218,7 +225,7 @@ This document contains development notes, spoilers, and planning information for
    - Add special resources only available in Velmire
 
 3. **Narrative Completion**
-   - Finalize memory fragment collection system
+   - Finalize Thalosian crystal collection system
    - Implement revelation of player's true identity
    - Create closing cinematic for each ending path
 
