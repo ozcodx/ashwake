@@ -1,5 +1,7 @@
 # Ashwake
 
+![Ashwake Header](menu/header.png)
+
 ## A Desolate Survival RPG
 
 Ashwake is a sandbox survival RPG set in the desolate aftermath of a forgotten age. In a world where Velrot, an unknown and insidious corruption, has twisted the land and life itself, you awaken alone—an Amnesis Unit, a biomechanical vessel with no memory and no past.
@@ -9,6 +11,10 @@ With no guidance, no cities, and no other sentient beings to speak to, your path
 Light is your only ally. Night brings out the worst of this broken world: creatures born of elemental distortion, called forth by the lingering Velrot. By day, you gather, adapt, and reconstruct. By night, you endure.
 
 This is not a quest. There are no scripted destinies. Only echoes.
+
+<p align="center">
+  <img src="menu/icon.png" width="200" alt="Ashwake Icon">
+</p>
 
 ## World & Lore
 
