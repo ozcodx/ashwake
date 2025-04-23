@@ -1,5 +1,3 @@
-# Ashwake
-
 ![Ashwake Header](menu/header.png)
 
 ## A Desolate Survival RPG
