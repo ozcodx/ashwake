@@ -11,18 +11,20 @@ This document contains development notes, spoilers, and planning information for
 ### Velrot Corruption
 - **Nature**: Incorporeal disease that distorts consciousness, perception, and reality
 - **Manifestation**: Invisible force, detected only through its effects on the environment and entities
+- **Natural Enemy**: Sunlight slowly cleanses and purifies corruption, explaining its prevalence underground
 - **Mechanics to implement**:
   - Effects on entities and mobs
   - Player debuffs when in corrupted areas
   - Corruption resistance/immunity items
+  - Purification of areas through artificial light sources
 
 ### Amnesis Units
 - **Background**: Biomechanical vessels created to store human memories
-- **Player Identity**: The player is an awakened Amnesis Unit with no memory
+- **Player Identity**: The player is an awakened Amnesis Unit with no predetermined purpose
 - **Mechanics to implement**:
   - Visual player model representing biomechanical nature
-  - Energy system instead of traditional food
-  - Upgradeable parts that boost mechanics
+  - Energy system that functions alongside traditional needs
+  - Upgradeable parts that boost capabilities through crystals and runes
 
 ---
 
@@ -37,16 +39,18 @@ This document contains development notes, spoilers, and planning information for
   - Thalosian Technology (energy cores, matter-energy conversion)
 - **Progression System**:
   - Technologies unlock through exploration and discovery
-  - Research component (finding ancient documents)
+  - Research component (finding ancient blueprints, manuals, and books)
   - Experimentation system (combining elements to discover recipes)
   - Crafting station requirements (more advanced tech requires specialized stations)
 
 ### Light & Darkness Cycle
 - **Core Mechanic**: Light is safety, darkness brings danger
+- **Solar Purification**: Sunlight naturally repels and cleanses corruption
 - **Implementation Ideas**:
   - Increased mob spawning in darkness
   - Player debuffs in darkness
-  - Light sources with different strengths/durations
+  - Light sources with different strengths/purification capabilities
+  - Day/night cycle affects corruption spread and intensity
 
 ### Crafting System
 - **Components**:
@@ -62,13 +66,13 @@ This document contains development notes, spoilers, and planning information for
   - Thalosian: Synth Chamber, Matter Reconstructor
 - **Discovery System**:
   - Recipe experimentation (shapeless crafting allows trying combinations)
-  - Ancient documents (find Thalosian texts containing advanced recipes)
+  - Ancient blueprints and manuals (find Thalosian documents containing advanced recipes)
   - Observation (certain world events can hint at possible recipes)
 
 ### Health & Survival System
 - **Energy System**:
-  - Food provides different energy levels (replaces traditional health)
-  - Even with mechanical body, organic components require sustenance
+  - Food provides different energy levels (supplements mechanical energy)
+  - Biomechanical body requires both organic and technological maintenance
   - Different food types provide different benefits/duration
 - **Illness System**:
   - Various conditions can affect the player (malfunctions, corruptions, etc.)
@@ -76,7 +80,7 @@ This document contains development notes, spoilers, and planning information for
   - Hidden factors influence illness development:
     - Sleep deprivation (too long without resting)
     - Sunlight deprivation (too long underground)
-    - Diet monotony (eating the same food repeatedly)
+    - Energy source monotony (using the same energy type repeatedly)
     - Environmental hazards (certain areas cause specific conditions)
 - **Treatment System**:
   - Each illness/condition has specific cures/treatments
@@ -113,9 +117,9 @@ This document contains development notes, spoilers, and planning information for
 ## Story Elements & Spoilers
 
 ### The Truth About the Player
-- Amnesis Unit #437, originally designated to host the consciousness of Dr. Elian Thorus
-- The transfer process was interrupted, resulting in corrupted/incomplete memory
-- Player can discover their identity through memory fragments
+- Amnesis Units (players), originally designated to host the consciousness of Dr. Elian Thorus and his team
+- The transfer process never take place, leaving a clean unit that awake, a miracle
+- Player can discover their origins through ancient documents and data logs
 
 ### The Crucis Engine
 - **Reality**: Origin of the Velrot disaster, not the solution
@@ -124,7 +128,7 @@ This document contains development notes, spoilers, and planning information for
   - Implement component collection quest
   - Design the Engine construction interface
   - Program the consequences of activation (new invasion phase)
-  - Create entry to Velmire dimension
+  - Create entry to Velmire dimension (eternal night world with a dead sun)
 
 ### The Six Elemental Bosses
 1. **Terra Prime**: Controls earth and stone, resides in deep underground ruins
@@ -141,7 +145,7 @@ This document contains development notes, spoilers, and planning information for
 ### Phase 1: Core Mechanics & Modifications (Current Phase)
 1. **Player Spawn & Base Mechanics**
    - ✅ Create `spawn_fix` to ensure proper spawn locations
-   - Utilize `skinsdb` to create Amnesis Unit appearances.
+   - Utilize `skinsdb` to create Amnesis Unit appearances
    - Create custom skins that match the game's aesthetic and lore
 
 2. **Survival Mechanics**
@@ -154,6 +158,7 @@ This document contains development notes, spoilers, and planning information for
    - Modify `weather` to include corruption particles/effects
    - Enhance night dangers by adjusting mob spawning parameters
    - Utilize existing dungeons as Thalosian ruins through `dungeon_loot` modifications
+   - Implement sunlight as natural purifier of corruption
 
 ### Phase 2: Entity & Creature Development
 1. **Custom Mobs Framework**
@@ -187,15 +192,17 @@ This document contains development notes, spoilers, and planning information for
    - Create `thalosian_tech` for advanced ancient technology with new recipes
 
 3. **Research & Discovery**
-   - Develop `thalosian_crystals` system for storing and retrieving memories/knowledge
-   - Modify `dungeon_loot` to include blueprints, crystal fragments, and ancient parts
+   - Develop `ancient_knowledge` system with blueprints, manuals, and books
+   - Modify `dungeon_loot` to include technical documents, crystal fragments, and ancient parts
    - Implement experiment-based recipe discovery within the shapeless crafting system
+   - Create element-themed dungeons with specialized loot and challenges
 
 ### Phase 4: Corruption & Alchemy
 1. **Corruption Mechanics**
    - Create `velrot_core` to handle corruption spread and effects
    - Implement corruption resistance items
    - Add corruption detection tools
+   - Create artificial sunlight devices to purify corrupted areas
 
 2. **Alchemical System**
    - Develop `alchemy_basics` for elemental essences
@@ -221,13 +228,14 @@ This document contains development notes, spoilers, and planning information for
 
 2. **Velmire Dimension**
    - Create separate dimension accessed through the Crucis Engine
-   - Develop unique environment and challenges
+   - Develop unique environment with eternal night and dead sun
    - Add special resources only available in Velmire
 
 3. **Narrative Completion**
-   - Finalize Thalosian crystal collection system
-   - Implement revelation of player's true identity
+   - Finalize ancient document collection system
+   - Implement revelation of player's origins and purpose
    - Create closing cinematic for each ending path
+   - Subtly emphasize the player's freedom to choose their own destiny
 
 ### Phase 6: Polishing & Balancing
 1. **Performance Optimization**
@@ -276,4 +284,81 @@ This document contains development notes, spoilers, and planning information for
 
 ## Random Ideas
 
-*Use this section for brainstorming and ideas that don't fit elsewhere* 
+### Procedural Thalosian Ruins System
+1. **Ancient Facility Discovery**
+   - Thalosian facilities are distributed underground at varying depths
+   - Discovery through mining, exploration, following surface clues or special detector devices
+   - Deeper facilities contain more advanced technology but higher corruption
+   - Element-themed facilities with corresponding resources and challenges
+   - Facility types might include:
+     - Data Archives (technical blueprints and information)
+     - Synthesis Chambers (biological)
+     - Energy Cores (power generation)
+     - Matter Reconstruction Labs (crafting)
+     - Stasis Vaults (preserved specimens)
+
+2. **Unidentified Thalosian Artifacts**
+   - Found in facilities, carried by corrupted units, or hidden in secret caches
+   - Items appear as "Unknown Device," "Strange Crystal," "Corrupted Core," etc.
+   - Must be analyzed or used to determine function, which varies per world seed
+   - Possible functions:
+     - Energy manipulation (teleportation, force fields)
+     - Biological effects (healing, mutation, corruption resistance)
+     - Environmental control (light generation, purification)
+     - Technological enhancement (skill improvement, capability expansion)
+
+3. **Augmentation and Upgrade System**
+   - Thalosian crystals and runes can be used to enhance equipment or the player's Amnesis Unit
+   - Requires specialized Synth Chambers on the surface to safely integrate
+   - Augmentations might include:
+     - Passive enhancements (elemental resistance, corruption immunity)
+     - Active abilities (energy projection, terrain manipulation)
+     - Risk-based enhancements (powerful but increases corruption vulnerability)
+     - Multi-part augmentations that require multiple components
+
+4. **Surface Dependency & Solar Purification**
+   - The surface serves as a safe haven from deep corruption due to sunlight's purifying effect
+   - Sunlight naturally cleanses corruption over time, making the surface safer
+   - Critical game mechanics require surface access:
+     - Purification stations need sunlight to cleanse corrupted items
+     - Thalosian technology often requires solar recharging
+     - Certain crystal growth or stabilization only possible in sunlight
+     - Advanced research and crafting requires clean environmental conditions preventing corruption
+
+5. **Base Building & Strategic Return**
+   - Players need to establish surface bases for long-term survival
+   - Regular return to base is essential for:
+     - Analyzing discovered blueprints and technical documents
+     - Processing uncovered Thalosian technology
+     - Recharging energy-based equipment
+     - Purging accumulated corruption effects
+     - Creating artificial sunlight devices for underground expeditions
+
+### Light Spectrum & Corruption Interaction
+1. **Chromatic Purification Effect**
+   - Only pure white light effectively repels Velrot corruption
+   - Decomposed light (specific wavelengths) have different effects on corruption:
+     - Green light provides moderate protection (most reliable colored light)
+     - Yellow and cyan light offer minimal protection
+     - Red, blue, and purple light (spectrum extremes) actually attract corruption
+     - Corrupted areas might show chromatic distortions visible to players
+
+2. **Light-Based Technology**
+   - Players must develop light purification tech that removes spectral contamination
+   - "Light filters" can be crafted to purify colored light sources
+   - Advanced Thalosian prisms can generate true white light from any source
+   - Corrupted light meters help detect dangerous spectral contamination
+
+3. **Corrupted Light Entities**
+   - Lux monsters evolved from exposure to corrupted light at spectrum extremes
+   - Red light variants: Heat-based abilities, aggressive behavior
+   - Blue light variants: Cold-based abilities, methodical hunters
+   - Purple light variants: Reality-distorting abilities, unpredictable behavior
+
+### Additional Systems for Expansion
+- **Crystal Engineering**: Combining raw crystal fragments with elemental essences to create specialized tools and components
+- **Ancient Technical Language**: Deciphering technical documents to unlock advanced Thalosian technology
+- **Hidden Biomes**: Discovering micro-realities trapped within corrupted spaces (contained ecosystems preserved from before the disaster)
+- **Energy Network**: Establishing a surface network of Thalosian energy relays that push back corruption and provide safe zones
+- **Detection Systems**: Creating scanners and radars to locate element-specific resources and hidden facilities
+- **Artificial Sunlight**: Developing technology that mimics the sun's purifying effect for safer deep exploration 
