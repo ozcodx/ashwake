@@ -357,3 +357,55 @@ This document tracks the development of Ashwake's lore, characters, and story el
 ---
 
 *This document should be expanded as new lore elements are developed for implementation in-game.* 
+
+---
+
+## Appendix to the Main Lore: Narrative and Conceptual Details of Velrot
+
+This document expands and deepens key aspects of the game's narrative universe, based on the creator's responses and reflections, which seek to fill plot gaps and consolidate the tone and symbolism of the work.
+
+### 1. Nature of Velrot
+
+Velrot is conceived as a form of interdimensional corruption, without consciousness or will, more akin to a fungus or mycelium that spreads, consumes, and corrupts. Its arrival in the world was an indirect result of scientific ambition: by opening portals and experimenting with new forms of energy, reality was fractured and its entry was permitted.
+
+Its primary function is to consume life and, to a lesser extent, matter. It corrupts what it touches, generating empty creatures devoid of identity, with total loss of their previous consciousness. It profoundly affects memory, destroying what makes a being unique. The corruption generates entities without intelligence, guided only by an insatiable hunger, the product of an incomprehensible alien evolution.
+
+Inspired by Lovecraftian cosmic horror, its origin should not be completely explained. It is not necessary to understand it; its unknowability enhances its horror.
+
+### 2. The Collapse of Civilization
+
+Civilization was governed by a technocracy, with scientists in power divided between two factions: a progressive and ambitious one that sought to advance at all costs, and a more conservative one that warned of dangers. It was this division that allowed the corruption to spread, as while some sought to contain it, others tried to control it.
+
+When collapse was imminent, the project to create the units was undertaken: hybrid capsules, with mechanical bodies and organic cores, capable of carrying human memories resistant to corruption. However, the project was never completed. The final catastrophe, in an attempt to "cleanse the world," accelerated its fall and extinguished civilization.
+
+### 3. The Units and Their Awakening
+
+Most units remained incomplete. A few were partially activated and can be found as NPCs. The units that awaken in the present are empty vessels, without past, without memories. They represent the arrival of players, a "miracle" that breaks the fourth wall: their activation coincides with their connection to the game.
+
+This awakening has no internal cause in the world, but an external, almost metaphysical one. It is a metaphor for the rebirth of being from emptiness. Some units were corrupted and are now extensions of Velrot, not because they have will, but because corruption has evolved within them.
+
+There exists the idea of a "prime" unit, the first to awaken, which represents the creator of the game, but also an original spark of life and consciousness.
+
+### 4. The Current World
+
+On the surface, biomes evolved naturally, with almost no trace of human structures. The sun, opposed to Velrot, allows plant and animal life to flourish. Civilization developed primarily underground, so the most relevant ruins are found beneath the earth.
+
+The world has no traditional villains. Antagonism arises from ambition, fear, arrogance, and human ignorance. There was no deliberate malice, only tragic errors born from the desire to do good.
+
+### 5. Main Themes
+
+- **Identity**: Players, as units without memory, must forge themselves from scratch.
+- **Memory and forgetting**: Corruption erases all traces of what was. Memory is a lost treasure.
+- **Transhumanism**: The units represent the fusion of human and machine, and their evolution is manifested in mechanical additions.
+- **Fall and redemption**: Civilization fell by its own actions. What remains is a world in ruins, where something new can emerge.
+- **Hidden truths**: The world is full of buried secrets, clues to what was and what really happened.
+- **Duality**: The struggle between light and darkness, scientific factions, ambition and fear, etc.
+- **Betrayed trust**: That in which faith was placed, which promised salvation, turned out to be the cause of perdition.
+
+### 6. Symbolism
+
+- **Light and darkness**: Represent life and corruption respectively.
+- **The miracle of awakening**: An allegory of the vital spark, of the rebirth of being.
+- **Scientific ambition**: As an engine of creation and destruction.
+- **The spiral**: Humanity running in circles, slowly descending into its own perdition.
+- **The search for truth**: Only by delving deep, though painful, can answers be found, and in history lies the key to building the future. 
